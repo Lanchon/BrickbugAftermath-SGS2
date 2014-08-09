@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+script_dir="$(dirname "$(readlink -f "$0")")"
+
+source $script_dir/lib/set-env
+
+$script_dir/lib/for-each $script_dir/lib/for-each-apply
+
+#cd $android_dir
+#source build/envsetup.sh
+#brunch <DEVICE_TARGET>
+

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+script_dir="$(dirname "$(readlink -f "$0")")"
+
+source $script_dir/lib/set-env
+
+cd $android_dir
+
+command="rm -rf"
+
+$command out/target/product/i9100
+

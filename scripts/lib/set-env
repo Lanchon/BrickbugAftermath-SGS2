@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+[[ "$android_dir" == "" ]] && export android_dir=~/android/system
+[[ "$patch_dir" == "" ]] && export patch_dir=$script_dir/../patches
+[[ "$patch_filename_prefix" == "" ]] && export patch_filename_prefix=
+[[ "$git_branch" == "" ]] && export git_branch=brickbug-aftermath
+

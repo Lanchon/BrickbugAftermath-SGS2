@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+patch_prefix=$patch_dir/$patch_filename_prefix
+command=$1
+
+$command    ${patch_prefix}device_samsung_i9100.patch       $android_dir/device/samsung/i9100
+$command    ${patch_prefix}kernel_samsung_smdk4412.patch    $android_dir/kernel/samsung/smdk4412
+

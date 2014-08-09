@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+script_dir="$(dirname "$(readlink -f "$0")")"
+diff_out_dir=$script_dir
+
+#source $script_dir/lib/set-env
+
+$script_dir/apply >$diff_out_dir/diff-apply-out 2>&1
+diff $diff_out_dir/diff-apply-out-ref $diff_out_dir/diff-apply-out
+
