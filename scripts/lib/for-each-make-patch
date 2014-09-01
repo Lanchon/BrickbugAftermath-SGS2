@@ -12,5 +12,6 @@ echo make patch: $patch_name
 cd $android_patch_dir
 git add .
 git diff HEAD >$patch_file
+git reset
 #echo
 
