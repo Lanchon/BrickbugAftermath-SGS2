@@ -8,10 +8,10 @@ index 63042df..7e34f15 100644
  BOARD_HAS_NO_SELECT_BUTTON := true
 -BOARD_SUPPRESS_EMMC_WIPE := true
 +# BrickbugAftermath:
-+# Revert suppression of eMMC partition wiping in recovery.
++# Revert suppression of partition wiping in recovery. Use the safe, non-secure
++# discard command variant in case this code is ever run under an unsafe kernel.
 +#BOARD_SUPPRESS_EMMC_WIPE := true
-+# Explicit non-secure wiping is not required given Samsung's brickbug fix.
-+#COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
++COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
  BOARD_RECOVERY_SWIPE := true
  TARGET_RECOVERY_FSTAB := device/samsung/galaxys2-common/rootdir/fstab.smdk4210
  RECOVERY_FSTAB_VERSION := 2
