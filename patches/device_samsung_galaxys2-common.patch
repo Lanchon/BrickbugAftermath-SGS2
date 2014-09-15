@@ -1,11 +1,31 @@
 diff --git a/BoardCommonConfig.mk b/BoardCommonConfig.mk
-index 63042df..7e34f15 100644
+index ce32e68..788c008 100644
 --- a/BoardCommonConfig.mk
 +++ b/BoardCommonConfig.mk
-@@ -161,1 +161,5 @@ BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
+@@ -139,7 +139,11 @@ BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
+ BOARD_USES_MMCUTILS := true
+ BOARD_HAS_NO_MISC_PARTITION := true
+ BOARD_HAS_NO_SELECT_BUTTON := true
 -BOARD_SUPPRESS_EMMC_WIPE := true
 +# BrickbugAftermath:
 +# Revert suppression of partition wiping in recovery. Use the safe, non-secure
 +# discard command variant in case this code is ever run under an unsafe kernel.
 +#BOARD_SUPPRESS_EMMC_WIPE := true
 +COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
+ 
+ TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys2-common/include
+ 
+diff --git a/rootdir/fstab.smdk4210 b/rootdir/fstab.smdk4210
+index 13236af..d880e40 100755
+--- a/rootdir/fstab.smdk4210
++++ b/rootdir/fstab.smdk4210
+@@ -5,7 +5,7 @@
+ # data partition must be located at the bottom for supporting device encryption
+ 
+ /dev/block/mmcblk0p9    /system             ext4      ro,noatime    wait
+-/dev/block/mmcblk0p7    /cache              ext4      noatime,nosuid,nodev,journal_async_commit,errors=panic    wait,check_spo
++/dev/block/mmcblk0p7    /cache              ext4      noatime,nosuid,nodev,discard,journal_async_commit,errors=panic    wait,check_spo
+ /dev/block/mmcblk0p1    /efs                ext4      noatime,nosuid,nodev,journal_async_commit,errors=panic    wait,check_spo
+ /dev/block/mmcblk0p10   /data               ext4      noatime,nosuid,nodev,discard,noauto_da_alloc,journal_async_commit,errors=panic    wait,check_spo,encryptable=/efs/metadata
+-/dev/block/mmcblk0p12   /preload            ext4      ro,nosuid,nodev,noatime    wait
++/dev/block/mmcblk0p12   /preload            ext4      noatime,nosuid,nodev,discard,journal_async_commit    wait
