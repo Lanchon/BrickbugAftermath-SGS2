@@ -1,8 +1,0 @@
-=== apply: device_samsung_i9100.patch ====
-Switched to a new branch 'brickbug-aftermath'
-patching file BoardConfig.mk
-
-=== apply: kernel_samsung_smdk4412.patch ====
-Switched to a new branch 'brickbug-aftermath'
-patching file drivers/mmc/host/mshci.c
-
