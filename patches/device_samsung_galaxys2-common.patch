@@ -1,20 +1,3 @@
-diff --git a/BoardCommonConfig.mk b/BoardCommonConfig.mk
-index c46fef8..3744eb3 100644
---- a/BoardCommonConfig.mk
-+++ b/BoardCommonConfig.mk
-@@ -154,7 +154,11 @@ BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
- BOARD_USES_MMCUTILS := true
- BOARD_HAS_NO_MISC_PARTITION := true
- BOARD_HAS_NO_SELECT_BUTTON := true
--BOARD_SUPPRESS_EMMC_WIPE := true
-+# BrickbugAftermath:
-+# Revert suppression of partition wiping in recovery. Use the safe, non-secure
-+# discard command variant in case this code is ever run under an unsafe kernel.
-+#BOARD_SUPPRESS_EMMC_WIPE := true
-+COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
- TARGET_RECOVERY_FSTAB := device/samsung/galaxys2-common/rootdir/fstab.smdk4210
- RECOVERY_FSTAB_VERSION := 2
- 
 diff --git a/rootdir/fstab.smdk4210 b/rootdir/fstab.smdk4210
 index e3fd2e4..b28ad49 100755
 --- a/rootdir/fstab.smdk4210
